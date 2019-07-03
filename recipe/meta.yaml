@@ -21,7 +21,7 @@ requirements:
     - click >=4.0,<7.0
     - configobj >=5.0.6,<6.0.0
     - pip
-    - prompt-toolkit >=1.0.0,<1.1.0
+    - prompt-toolkit >=1.0.0,<=2.0.1
     - pygments >=2.0.2,<3.0.0
     - python
     - six >=1.9.0,<2.0.0
