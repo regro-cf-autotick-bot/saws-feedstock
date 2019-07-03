@@ -10,45 +10,39 @@ source:
   sha256: 5f878a6996a7d6a9bf7a7617baa7ed1a1a9249f803cbc00874ad8c74ff82b639
 
 build:
-  number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  number: 1
+  entry_points:
+    - saws = saws.main:cli
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
-    - python
+    - awscli >=1.7.46,<2.0.0
+    - click >=4.0,<7.0
+    - configobj >=5.0.6,<6.0.0
     - pip
-
+    - prompt-toolkit >=1.0.0,<1.1.0
+    - pygments >=2.0.2,<3.0.0
+    - python
+    - six >=1.9.0,<2.0.0
   run:
+    - awscli >=1.7.46,<2.0.0
+    - click >=4.0,<7.0
+    - configobj >=5.0.6,<6.0.0
+    - prompt-toolkit >=1.0.0,<1.1.0
+    - pygments >=2.0.2,<3.0.0
     - python
-    - pip
-    - codecov>=1.3.3
-    - flake8>=2.4.1
-    - mock>=1.0.1
-    - pexpect>=3.3
-    - pytest>=2.7.0
-    - tox>=1.9.2
-    - future
-    - click
-    - prompt_toolkit<=2.0.1
-    - awscli
-    - configobj
+    - six >=1.9.0,<2.0.0
 
 test:
   imports:
-    - saws.toolbar
-    - saws.completer
-    - saws.commands
-    - saws.saws
-    - saws.commands
-    - tests.compat
-    - tests.test_completer
-    - tests.test_commands
-    - tests.test_resources
-    - tests.test_options
-    - tests.test_saws
-    - tests.test_toolbar
-    - tests.test_keys
-    - tests.test_cli
+    - saws
+    - saws.resource
+    - scratch
+    - scratch.option
+    - tests
+  commands:
+    - saws --help
 
 about:
   home: https://github.com/donnemartin/saws
