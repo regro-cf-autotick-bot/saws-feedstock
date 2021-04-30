@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 2
+  number: 3
   entry_points:
     - saws = saws.main:cli
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
@@ -54,6 +54,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - mxr-conda
     - agcopenhaver
     - rluria14
     - oblute
