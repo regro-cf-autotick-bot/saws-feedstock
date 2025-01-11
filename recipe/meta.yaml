@@ -6,12 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 5f878a6996a7d6a9bf7a7617baa7ed1a1a9249f803cbc00874ad8c74ff82b639
 
 build:
   noarch: python
-  number: 3
+  number: 4
   entry_points:
     - saws = saws.main:cli
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
@@ -19,17 +19,19 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - awscli >=1.7.46,<2.0.0
     - click >=4.0,<7.0
     - configobj >=5.0.6,<6.0.0
     - prompt_toolkit >=1.0.0,<=1.1.0
     - pygments >=2.0.2,<3.0.0
-    - python
+    - python >={{ python_min }}
     - six >=1.9.0,<2.0.0
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - saws
     - saws.resource
